@@ -13,7 +13,7 @@ while True:     #This breaks when the decision == "quit"
     choice = int(input("-------------------------------------------\nWhat would like to do?\n1. Get weather condition for a city?\n2.Get weather conditions of multiple cities.\n3. Get weather forecasts for the next 5 days \n1, 2  or 3? "))
     if choice ==1:
         city = input("-------------------------------------------\nEnter a city name: ")
-        url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=75623c2594f55bcc8d987fb0f841b528"
+        url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&{api-key}"
         data = requests.get(url).json()     #saving the data as json file
         temperature=int(data['main']['temp'] -273.15)       #converting the fahrenheit temperature to Celsius
         condition = data['weather'][0]['main']
@@ -32,7 +32,7 @@ while True:     #This breaks when the decision == "quit"
             count += 1      #increase the number of cities entered until it equal num
             cities.append(city)     #add the city entered to the cities list
         for city in cities:     #iterating over each city, to get weather data
-            url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=75623c2594f55bcc8d987fb0f841b528"
+            url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&{api-key}"
             data = requests.get(url).json()
             temperature=int(data['main']['temp'] -273.15)
             condition = data['weather'][0]['main']
@@ -43,7 +43,7 @@ while True:     #This breaks when the decision == "quit"
             print(output2 + "\n-------------------------------------------")      #This prints information for each city
     elif choice ==3:        #for 5 day forecast
         city = input("-------------------------------------------\nEnter a city name: ")
-        url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city+ "&appid=75623c2594f55bcc8d987fb0f841b528"
+        url ="https://api.openweathermap.org/data/2.5/forecast?q=" + city+ "&{api-key}"
         data = requests.get(url).json()
         index = [0, 1, 2, 3, 4]     #This is for each day in the 'list' in the API data. 
         print("The weather condition for "+city+" for the next 5 days are: ")
