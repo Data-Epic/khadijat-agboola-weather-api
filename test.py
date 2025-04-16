@@ -21,7 +21,7 @@ def test_single_city_weather(monkeypatch, capsys):
 
         # Single city code
         city = input("-------------------------------------------\nEnter a city name: ")
-        url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=75623c2594f55bcc8d987fb0f841b528"
+        url = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&{API-KEY}"
         data = requests.get(url).json()
         temperature = int(data['main']['temp'] - 273.15)
         condition = data['weather'][0]['main']
